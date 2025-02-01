@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation/home_page.dart';
+import 'package:flutter_navigation/page_one.dart';
+import 'package:flutter_navigation/page_one_details.dart';
+import 'package:flutter_navigation/page_two.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
@@ -26,8 +29,25 @@ class MyApp extends StatelessWidget {
   final _router =
       GoRouter(initialLocation: '/', debugLogDiagnostics: true, routes: [
     GoRoute(
+      name: HomePage.routeName,
       path: '/',
       builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+        name: PageOne.routeName,
+        path: '/one',
+        builder: (context, state) => const PageOne(),
+        routes: [
+          GoRoute(
+            name: PageOneDetails.routeName,
+            path: 'one_details',
+            builder: (context, state) => const PageOneDetails(),
+          ),
+        ]),
+    GoRoute(
+      name: PageTwo.routeName,
+      path: '/two',
+      builder: (context, state) => const PageTwo(),
     ),
   ]);
 }
